@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string stringToLower(string s) {
+string stringToLower(const string s) {
 	string tmp = s;
 	for (int i = 0; i < s.length(); i++)
 		tmp[i] = tolower(s[i]);
