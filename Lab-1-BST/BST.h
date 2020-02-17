@@ -6,30 +6,35 @@ using namespace std;
 
 class BST
 {
-	public:
-		BST();
-		~BST();
+public:
+	BST();
+	~BST();
 
-		void insert(string word);
-		void remove(string word);
-		void search(string word);
-		void next(string word);
-		void prev(string word);
-		void parent(string word);
-		void child(string word);
-		void min();
-		void max();
-		void list();
+	void insert(string word);
+	void remove(string word);
+	void search(string word);
+	void next(string word);
+	void prev(string word);
+	void parent(string word);
+	void child(string word);
+	void min();
+	void max();
+	void list();
 
-	private:
-		struct node
-		{
-			string word;
-			int count = 1;
-			node* lch;
-			node* rch;
-		};
+private:
+	struct node
+	{
+		string word;
+		int count = 1;
+		node* left;
+		node* right;
+		node* parent = NULL;
+	};
 
-		node* root = NULL;
+	node* root = NULL;
+	
 
+	node* minimum(node* p);
+	node* maximum(node* p);
+	node* successor(node* p);
 };
