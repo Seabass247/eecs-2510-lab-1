@@ -7,7 +7,9 @@ using namespace std;
 class BST
 {
 public:
-	BST();
+	BST(
+		
+	);
 	~BST();
 
 	void insert(string word);
@@ -26,13 +28,12 @@ private:
 	{
 		string word;
 		int count = 1;
-		node* left;
-		node* right;
+		node* left = NULL;
+		node* right = NULL;
 		node* parent = NULL;
 	};
 
 	node* root = NULL;
-	
 
 	node* minimum(node* p);
 	node* maximum(node* p);

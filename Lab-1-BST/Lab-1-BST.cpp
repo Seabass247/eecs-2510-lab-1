@@ -1,4 +1,5 @@
 #include <iostream>
+#include "BST.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ int main()
 	cout << "hello world";
 	string cmd;
 
+	BST* bst = new BST();
 
 	// Loop forever.  The loop's boolean expression must always be true to indefinitely loop.
 	while (true) 
@@ -28,10 +30,18 @@ int main()
 			cin >> param;
 			cout << command << " " << param << "\n";
 		}
-		else 
+		else if (command == "insert") 
+		{
+			string param;
+			cin >> param;
+
+			bst->insert(param);
+		}
+		else
 		{
 			cout << command << "\n";
 		}
+
 	}
 }
 

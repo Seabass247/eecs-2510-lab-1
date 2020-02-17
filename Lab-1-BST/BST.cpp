@@ -22,7 +22,23 @@ void BST::insert(string word)
 		{
 			x = x->right;
 		}
+	}
 
+	node* z = new node();
+	z->word = word;
+
+	if (y == NULL)
+	{
+		root = z;
+	}
+	else if (word < y->word)
+	{
+		z->parent = y;
+		y->left = z;
+	}
+	else {
+		z->parent = y;
+		y->right = z;
 	}
 }
 
