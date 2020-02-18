@@ -1,4 +1,12 @@
-﻿#include "BST.h"
+﻿#include <iostream>
+#include "BST.h"
+
+using namespace std;
+
+BST::BST()
+{
+	root = NULL;
+}
 
 void BST::insert(string word)
 {
@@ -13,7 +21,6 @@ void BST::insert(string word)
 			x->count += 1;
 			return;
 		}
-
 		if (word < x->word)
 		{
 			x = x->left;
@@ -89,4 +96,54 @@ BST::node* BST::successor(node* p)
 		y = y->parent;
 	}
 	return y;
+}
+
+void BST::list()
+{
+	if (root != NULL)
+	{
+		traverse(root);
+	}
+}
+
+void BST::traverse(node* p)
+{
+	if (p->left != NULL)
+		traverse(p->left);
+	cout << p->word << " ";
+	if (p->right != NULL)
+		traverse(p->right);
+}
+
+//Tree - Search(k)
+//p = root			// p starts at the root, working its way down the tree
+//while p  nil		// Continue until p becomes null
+	//if p.key == k 		// If we found k, return p to tell where we found it
+	//return p
+	//if k < p.key		// If not found, then k belongs in either p’s left…
+	//	p = p.left		// … or right subtree.
+	//else			// Change p to shift our attention to the
+	//p = p.right		// appropriate child of where p currently is
+//return nil		// If we fell through the while loop, we either fell off a
+//				// leaf before finding k (not here), or the tree was empty
+//				// to begin with (not here).  Either way, return null
+int BST::search(string word)
+{
+	node* p = root;
+	while (p != NULL)
+	{
+		if (p->word == word)
+		{
+			return p->count;
+		}
+		if (word < p->word)
+		{
+			p = p->left;
+		}
+		else
+		{
+			p = p->right;
+		}
+	}
+	return 0;
 }

@@ -12,7 +12,7 @@ string stringToLower(const string s) {
 
 int main()
 {
-	cout << "hello world";
+	cout << "Ready... \n";
 	string cmd;
 
 	BST* bst = new BST();
@@ -24,18 +24,23 @@ int main()
 
 		string command = stringToLower(cmd);
 
-		if (command == "search")
-		{
-			string param;
-			cin >> param;
-			cout << command << " " << param << "\n";
-		}
-		else if (command == "insert") 
+		if (command == "insert") 
 		{
 			string param;
 			cin >> param;
 
 			bst->insert(param);
+		}
+		else if (command == "list")
+		{
+			bst->list();
+		}
+		else if (command == "search") 
+		{
+			string param;
+			cin >> param;
+
+			cout << param << " " << bst->search(param) << "\n";
 		}
 		else
 		{

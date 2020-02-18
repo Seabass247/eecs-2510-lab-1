@@ -7,14 +7,12 @@ using namespace std;
 class BST
 {
 public:
-	BST(
-		
-	);
+	BST();
 	~BST();
 
 	void insert(string word);
 	void remove(string word);
-	void search(string word);
+	int search(string word);
 	void next(string word);
 	void prev(string word);
 	void parent(string word);
@@ -38,4 +36,5 @@ private:
 	node* minimum(node* p);
 	node* maximum(node* p);
 	node* successor(node* p);
+	void traverse(node* p);
 };
