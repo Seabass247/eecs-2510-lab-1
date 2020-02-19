@@ -46,6 +46,10 @@ int main()
 		{
 			bst->min();
 		}
+		else if (command == "max")
+		{
+			bst->max();
+		}
 		else
 		{
 			cout << command << "\n";

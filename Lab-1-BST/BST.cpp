@@ -19,6 +19,8 @@ void BST::insert(string word)
 
 		if (x->word == word) {
 			x->count += 1;
+
+			cout << word << " " << x->count << "\n";
 			return;
 		}
 		if (word < x->word)
@@ -47,6 +49,8 @@ void BST::insert(string word)
 		z->parent = y;
 		y->right = z;
 	}
+
+	cout << word << " " << z->count << "\n";
 }
 
 void BST::min()
@@ -54,6 +58,18 @@ void BST::min()
 	if (root != NULL)
 	{
 		cout << minimum(root)->word << "\n";
+	}
+	else
+	{
+		cout << "\n";
+	}
+}
+
+void BST::max()
+{
+	if (root != NULL)
+	{
+		cout << maximum(root)->word << "\n";
 	}
 	else
 	{
