@@ -12,7 +12,6 @@ string stringToLower(const string s) {
 
 int main()
 {
-	cout << "Ready... \n";
 	string cmd;
 
 	BST* bst = new BST();
@@ -40,7 +39,35 @@ int main()
 			string param;
 			cin >> param;
 
-			cout << param << " " << bst->search(param) << "\n";
+			bst->search(param);
+		}
+		else if (command == "child")
+		{
+			string param;
+			cin >> param;
+
+			bst->child(param);
+		}
+		else if (command == "parent")
+		{
+			string param;
+			cin >> param;
+
+			bst->parent(param);
+		}
+		else if (command == "next")
+		{
+			string param;
+			cin >> param;
+
+			bst->next(param);
+		}
+		else if (command == "prev")
+		{
+			string param;
+			cin >> param;
+
+			bst->prev(param);
 		}
 		else if  (command == "min")
 		{
@@ -50,9 +77,20 @@ int main()
 		{
 			bst->max();
 		}
+		else if (command == "help")
+		{
+			string help = "insert <string>\ndelete <string>\nsearch <string>\n";
+			help += "min\nmax\nprev <string>\nnext <string>\nlist\nparent <string>\n";
+			help += "child <string>\nhelp\nquit\n";
+			cout << "Available commands:\n" << help;
+		}
+		else if (command == "quit")
+		{
+			return 0;
+		}
 		else
 		{
-			cout << command << "\n";
+			cout << "\n";
 		}
 
 	}

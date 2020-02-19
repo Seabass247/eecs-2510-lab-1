@@ -126,6 +126,49 @@ BST::node* BST::successor(node* p)
 	return y;
 }
 
+void BST::next(string word)
+{
+	node* p;
+	node* pNext;
+	if ((p = find(word)) != NULL && (pNext = successor(p)) != NULL)
+	{
+		cout << pNext->word << "\n";
+	}
+	else
+	{
+		cout << "\n";
+	}
+}
+
+BST::node* BST::predecessor(node* p)
+{
+	if (p->left != NULL)
+	{
+		return maximum(p->left);
+	}
+	node* y = p->parent;
+	while (y != NULL && p == y->left)
+	{
+		p = y;
+		y = y->parent;
+	}
+	return y;
+}
+
+void BST::prev(string word)
+{
+	node* p;
+	node* pNext;
+	if ((p = find(word)) != NULL && (pNext = predecessor(p)) != NULL)
+	{
+		cout << pNext->word << "\n";
+	}
+	else
+	{
+		cout << "\n";
+	}
+}
+
 void BST::list()
 {
 	if (root != NULL)
@@ -200,14 +243,28 @@ void BST::traverse(node* p, string& list, int itemCount)
 //return nil		// If we fell through the while loop, we either fell off a
 //				// leaf before finding k (not here), or the tree was empty
 //				// to begin with (not here).  Either way, return null
-int BST::search(string word)
+void BST::search(string word)
+{
+	node* p;
+	if ((p = find(word)) != NULL) 
+	{
+		cout << word << " " << p->count << "\n";
+	}
+	else
+	{
+		cout << word << " " << 0 << "\n";
+	}
+}
+
+// Returns the node associated with the key word, and if no node is found, otherwise returns NULL.
+BST::node* BST::find(string word)
 {
 	node* p = root;
 	while (p != NULL)
 	{
 		if (p->word == word)
 		{
-			return p->count;
+			return p;
 		}
 		if (word < p->word)
 		{
@@ -218,5 +275,50 @@ int BST::search(string word)
 			p = p->right;
 		}
 	}
-	return 0;
+	return NULL;
+}
+
+void BST::child(string word)
+{
+	node* p;
+
+	if ((p = find(word)) != NULL)
+	{
+		node* left = p->left;
+		node* right = p->right;
+
+		string leftWord = "NULL";
+		string rightWord = "NULL";
+
+		if (left != NULL)
+		{
+			leftWord = left->word;
+		}
+		if (right != NULL) 
+		{
+			rightWord = right->word;
+		}
+
+		cout << leftWord << ", " << rightWord << "\n";
+
+	}
+	else
+	{
+		cout << "\n";
+	}
+}
+
+void BST::parent(string word)
+{
+	node* p;
+	node* pParent;
+
+	if ((p = find(word)) != NULL && (pParent = p->parent) != NULL)
+	{
+		cout << pParent->word << "\n";
+	}
+	else
+	{
+		cout << "\n";
+	}
 }

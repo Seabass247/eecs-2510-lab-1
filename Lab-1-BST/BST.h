@@ -12,7 +12,7 @@ public:
 
 	void insert(string word);
 	void remove(string word);
-	int search(string word);
+	void search(string word);
 	void next(string word);
 	void prev(string word);
 	void parent(string word);
@@ -20,6 +20,7 @@ public:
 	void min();
 	void max();
 	void list();
+
 
 private:
 	struct node
@@ -36,5 +37,7 @@ private:
 	node* minimum(node* p);
 	node* maximum(node* p);
 	node* successor(node* p);
+	node* predecessor(node* p);
+	node* find(string word);
 	void traverse(node* p, string& list, int itemCount = 0);
 };
