@@ -115,19 +115,61 @@ void BST::list()
 	if (root != NULL)
 	{
 		cout << "Set contains: ";
-		string list = "";
+		// Declare an empty list string to be populated by comma-separated values.
+		string list;
+
+		// By default we assume the first item is number 1.
+		int itemCount = 1;
+
+		// Populate the list string with a list of comma-separated values of items and their
+		// respective counts.
 		traverse(root, list);
+
+		// Parse the comma-separated string list of values into a readable print format,
+		// where each item and its count are numbered from 0 to n items in the tree.
+		for (int i = 0; i < list.length(); i++)
+		{
+			// Create the label that will be inserted in front of each item. Looks like ', (n) '
+			// where n is the item's number.
+			string label = ", (" + to_string(itemCount) + ") ";
+			// Replace comma with ', (n) ' where n is the number of the item.
+			if (list[i] == ',')
+			{
+				list.replace(i, 1, label);
+				itemCount++; // Increments the item count for the label of the next item, so that it's '(n+1)'
+			}
+			else if (i == (list.length() - 1)) // At the last character of the list string?
+			{
+				// Remove the last character (an extraneous comma ',') from the list.
+				list = list.substr(0, list.length() - label.length());
+				itemCount++; // Increments the item count for the label of the next item, so that it's '(n+1)'
+			}
+			// Insert the first label at very the beginning of the comma-separated list
+			// (This branch is necessary because there is no comma at the beginning of the list to replace,
+			// and the label string must be trimmed to '(n) ' from original: ', (n) ').
+			else if (i == 0)
+			{
+				// Trim the label to '(n) ', for the beginning of the list shouldn't start with a comma,
+				// and insert the label at the very beginnning of the list string.
+				list.insert(0, label.substr(2, label.length()));
+				itemCount++; // Increments the item count for the label of the next item, so that it's '(n+1)'
+			}
+		}
 		cout << list << "\n";
+	}
+	else
+	{
+		cout << "Set is empty \n";
 	}
 }
 
-void BST::traverse(node* p, string& list)
+void BST::traverse(node* p, string& list, int itemCount)
 {
 	if (p->left != NULL)
-		traverse(p->left, list);
+		traverse(p->left, list, ++itemCount);
 	list = list + p->word + " " + to_string(p->count) + ",";
 	if (p->right != NULL)
-		traverse(p->right, list);
+		traverse(p->right, list, ++itemCount);
 }
 
 //Tree - Search(k)

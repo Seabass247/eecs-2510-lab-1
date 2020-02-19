@@ -36,5 +36,5 @@ private:
 	node* minimum(node* p);
 	node* maximum(node* p);
 	node* successor(node* p);
-	void traverse(node* p, string& list);
+	void traverse(node* p, string& list, int itemCount = 0);
 };
