@@ -49,6 +49,18 @@ void BST::insert(string word)
 	}
 }
 
+void BST::min()
+{
+	if (root != NULL)
+	{
+		cout << minimum(root)->word << "\n";
+	}
+	else
+	{
+		cout << "\n";
+	}
+}
+
 //Tree - Minimum(x)
 //1  while x.left ≠ nil
 //2      x = x.left
