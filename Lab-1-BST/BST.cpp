@@ -102,17 +102,20 @@ void BST::list()
 {
 	if (root != NULL)
 	{
-		traverse(root);
+		cout << "Set contains: ";
+		string list = "";
+		traverse(root, list);
+		cout << list << "\n";
 	}
 }
 
-void BST::traverse(node* p)
+void BST::traverse(node* p, string& list)
 {
 	if (p->left != NULL)
-		traverse(p->left);
-	cout << p->word << " ";
+		traverse(p->left, list);
+	list = list + p->word + " " + to_string(p->count) + ",";
 	if (p->right != NULL)
-		traverse(p->right);
+		traverse(p->right, list);
 }
 
 //Tree - Search(k)
