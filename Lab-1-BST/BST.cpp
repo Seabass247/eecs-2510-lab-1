@@ -183,7 +183,7 @@ void BST::list()
 		// Populate the list string with a list of comma-separated values of items and their
 		// respective counts.
 		traverse(root, list);
-
+	
 		// Parse the comma-separated string list of values into a readable print format,
 		// where each item and its count are numbered from 0 to n items in the tree.
 		for (int i = 0; i < list.length(); i++)
@@ -222,13 +222,13 @@ void BST::list()
 	}
 }
 
-void BST::traverse(node* p, string& list, int itemCount)
+void BST::traverse(node* p, string& list)
 {
 	if (p->left != NULL)
-		traverse(p->left, list, ++itemCount);
+		traverse(p->left, list);
 	list = list + p->word + " " + to_string(p->count) + ",";
 	if (p->right != NULL)
-		traverse(p->right, list, ++itemCount);
+		traverse(p->right, list);
 }
 
 //Tree - Search(k)

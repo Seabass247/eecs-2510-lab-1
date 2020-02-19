@@ -39,5 +39,5 @@ private:
 	node* successor(node* p);
 	node* predecessor(node* p);
 	node* find(string word);
-	void traverse(node* p, string& list, int itemCount = 0);
+	void traverse(node* p, string& list);
 };
