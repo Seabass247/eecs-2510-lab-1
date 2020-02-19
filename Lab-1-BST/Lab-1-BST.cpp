@@ -42,6 +42,10 @@ int main()
 
 			cout << param << " " << bst->search(param) << "\n";
 		}
+		else if  (command == "min")
+		{
+			bst->min();
+		}
 		else
 		{
 			cout << command << "\n";
