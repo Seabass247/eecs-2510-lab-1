@@ -30,6 +30,13 @@ int main()
 
 			bst->insert(param);
 		}
+		else if (command == "delete")
+		{
+			string param;
+			cin >> param;
+
+			bst->remove(param);
+		}
 		else if (command == "list")
 		{
 			bst->list();

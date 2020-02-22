@@ -8,6 +8,134 @@ BST::BST()
 	root = NULL;
 }
 
+void BST::remove(string word) 
+{
+	// If z is in the set, and then if z is a leaf, 
+	// insert NULL in the node that
+	// used to be z's parent.
+	node* z;
+	if ((z = find(word)) != NULL)
+	{
+		// If z has a count of 2 or more, only decrement its count by 1.
+		if (z->count > 1)
+		{
+			cout << word << " " << --z->count << "\n";
+			// z does not need to be deleted if it has more than one of itself,
+			// so the "deletion" is done, this function returns here.
+			return;
+		}
+
+		// p (z's parent) could be null if z's the root, otherwise it's used
+		// decide whether z is a left child or right child
+		node* p = z->parent;
+	
+		// z is a leaf (has no left nor right child (NO children))
+		if (z->left == NULL && z->right == NULL)
+		{
+			// If z has no parent (it's the root), so make the root null
+			if (p == NULL) 
+			{
+				root = NULL;
+			}
+			// If z is the left child of its parent, set it to null
+			else if (p->left == z)
+			{
+				p->left = NULL;
+			}
+			else // Otherwise z must be the right child 
+			{
+				p->right = NULL;
+			}
+
+			delete z;
+		} 
+		// z has a left child only
+		else if (z->left != NULL && z->right == NULL)
+		{
+			// IF z has no parent (it's the root), so make the root z's only child
+			if (p == NULL)
+			{
+				root = z->left;
+				root->parent = NULL;
+			} 
+			// If z is its parent's left child, replace that child with z's only child (left here).
+			else if (p->left == z)
+			{
+				z->left->parent = p;
+				p->left = z->left;
+			}
+			// Otherwise z must be the right child of its parent,
+			// replace that child with z's only child (left here).
+			else 
+			{
+				z->left->parent = p;
+				p->right = z->left;
+			}
+
+			delete z;
+		}
+		// z has a right child only
+		else if (z->right != NULL && z->left == NULL)
+		{
+			// if z has no parent (it's the root), so make the root z's only child
+			if (p == NULL)
+			{
+				root = z->right;
+				root->parent = NULL;
+			}
+			// If z is its parent's left child, replace that child with z's only child (right here).
+			else if (p->left == z)
+			{
+				z->right->parent = p;
+				p->left = z->right;
+			}
+			// Otherwise z must be the right child of its parent, replace that child with z's only child (right here).
+			else 
+			{
+				z->right->parent = p;
+				p->right = z->right;
+			}
+			
+			delete z;
+		}
+		// z has two children, find its successor y, and replace z's data with y's data
+		else if (z->left != NULL && z->right != NULL)
+		{
+			node* y = successor(z);
+			// Replace z's data and satellite data with y's data.
+			// (Let y replace z)
+			z->word = y->word;
+			z->count = y->count;
+
+			// y's Parent could be z or some node further down in z's right subtree.
+			node* yParent = y->parent;
+			// Is y z's successor?
+			if (yParent == z)
+			{
+				// y must be z's immediate child. Set z's right child to y's 
+				// only child (y's right child).
+				y->right->parent = z;
+				z->right = y->right;
+			}
+			// y is some node further down in z's right subtree.
+			else
+			{
+				// For y's parent, set its left child to y's only child (right child)
+				// effectively splicing out y.
+				y->right->parent = yParent;
+				yParent->left = y->right;
+			}
+
+			// y is no longer needed; it has been spliced out, so delete it.
+			delete y;
+		}
+	}
+	else // z is not in the set
+	{
+		cout << word << " " << -1 << "\n";
+	}
+}
+
 void BST::insert(string word)
 {
 	node* x = root;
@@ -230,6 +358,7 @@ void BST::traverse(node* p, string& list)
 	if (p->right != NULL)
 		traverse(p->right, list);
 }
+
 
 //Tree - Search(k)
 //p = root			// p starts at the root, working its way down the tree
