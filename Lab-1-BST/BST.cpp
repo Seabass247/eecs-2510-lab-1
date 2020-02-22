@@ -8,6 +8,23 @@ BST::BST()
 	root = NULL;
 }
 
+BST::~BST()
+{
+	if (root != NULL) 
+	{
+		traverse_delete(root);
+	}
+}
+
+void BST::traverse_delete(node* p)
+{
+	if (p->left != NULL)
+		traverse_delete(p->left);
+	if (p->right != NULL)
+		traverse_delete(p->right);
+	delete p;
+}
+
 void BST::remove(string word) 
 {
 	// If z is in the set, and then if z is a leaf, 

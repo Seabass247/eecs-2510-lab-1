@@ -93,6 +93,7 @@ int main()
 		}
 		else if (command == "quit")
 		{
+			delete bst;
 			return 0;
 		}
 		else
