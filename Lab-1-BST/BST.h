@@ -40,5 +40,5 @@ private:
 	node* predecessor(node* p);
 	node* find(string word);
 	void traverse(node* p, string& list);
-	void traverse_delete(node* p);
+	void traverseDelete(node* p);
 };

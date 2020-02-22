@@ -12,16 +12,16 @@ BST::~BST()
 {
 	if (root != NULL) 
 	{
-		traverse_delete(root);
+		traverseDelete(root);
 	}
 }
 
-void BST::traverse_delete(node* p)
+void BST::traverseDelete(node* p)
 {
 	if (p->left != NULL)
-		traverse_delete(p->left);
+		traverseDelete(p->left);
 	if (p->right != NULL)
-		traverse_delete(p->right);
+		traverseDelete(p->right);
 	delete p;
 }
 
