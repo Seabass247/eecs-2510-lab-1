@@ -149,7 +149,8 @@ void BST::remove(string word)
 			{
 				// y must be z's immediate child. Set z's right child to y's 
 				// only child (y's right child).
-				y->right->parent = z;
+				if (y->right != NULL)
+					y->right->parent = z;
 				z->right = y->right;
 			}
 			// y is some node further down in z's right subtree.
@@ -157,7 +158,8 @@ void BST::remove(string word)
 			{
 				// For y's parent, set its left child to y's only child (right child)
 				// effectively splicing out y.
-				y->right->parent = yParent;
+				if (y->right != NULL)
+					y->right->parent = yParent;
 				yParent->left = y->right;
 			}
 
@@ -493,7 +495,7 @@ void BST::search(string word)
 }
 
 // A helper function which returns the node associated with the key word, 
-// and if no node is found, returns NULL.
+// and if no node is found, or the tree is empty, returns NULL.
 BST::node* BST::find(string word)
 {
 	//
