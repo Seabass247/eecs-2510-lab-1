@@ -25,12 +25,17 @@ void BST::traverseDelete(node* p)
 	delete p;
 }
 
+// If z is in the set, and then if z is a leaf, 
+// insert NULL in the node that
+// used to be z's parent.
 void BST::remove(string word) 
 {
-	// If z is in the set, and then if z is a leaf, 
-	// insert NULL in the node that
-	// used to be z's parent.
+	// z is the node which is to be deleted from the tree.
 	node* z;
+
+	// If z is found somewhere in the tree by the word, then set z to the node 
+	// containing said word as its key, and proceed to delete based on several cases 
+	// and respective subcases depening on z's children or lack thereof.
 	if ((z = find(word)) != NULL)
 	{
 		// If z has a count of 2 or more, only decrement its count by 1.
@@ -38,30 +43,30 @@ void BST::remove(string word)
 		{
 			cout << word << " " << --z->count << "\n";
 			// z does not need to be deleted if it has more than one of itself,
-			// so the "deletion" is done, this function returns here.
+			// so the "deletion" is done, remove can return here.
 			return;
 		}
 
-		// p (z's parent) could be null if z's the root, otherwise it's used
+		// zParent (z's parent) is null if z is the root, otherwise it's used
 		// decide whether z is a left child or right child
-		node* p = z->parent;
+		node* zParent = z->parent;
 	
 		// z is a leaf (has no left nor right child (NO children))
 		if (z->left == NULL && z->right == NULL)
 		{
 			// If z has no parent (it's the root), so make the root null
-			if (p == NULL) 
+			if (zParent == NULL) 
 			{
 				root = NULL;
 			}
 			// If z is the left child of its parent, set it to null
-			else if (p->left == z)
+			else if (zParent->left == z)
 			{
-				p->left = NULL;
+				zParent->left = NULL;
 			}
 			else // Otherwise z must be the right child 
 			{
-				p->right = NULL;
+				zParent->right = NULL;
 			}
 
 			delete z;
@@ -70,47 +75,47 @@ void BST::remove(string word)
 		else if (z->left != NULL && z->right == NULL)
 		{
 			// IF z has no parent (it's the root), so make the root z's only child
-			if (p == NULL)
+			if (zParent == NULL)
 			{
 				root = z->left;
 				root->parent = NULL;
 			} 
 			// If z is its parent's left child, replace that child with z's only child (left here).
-			else if (p->left == z)
+			else if (zParent->left == z)
 			{
-				z->left->parent = p;
-				p->left = z->left;
+				z->left->parent = zParent;
+				zParent->left = z->left;
 			}
 			// Otherwise z must be the right child of its parent,
 			// replace that child with z's only child (left here).
 			else 
 			{
-				z->left->parent = p;
-				p->right = z->left;
+				z->left->parent = zParent;
+				zParent->right = z->left;
 			}
 
 			delete z;
 		}
-		// z has a right child only
+		// z has a right child only.
 		else if (z->right != NULL && z->left == NULL)
 		{
-			// if z has no parent (it's the root), so make the root z's only child
-			if (p == NULL)
+			// if z has no parent (it's the root), so make the root z's only child.
+			if (zParent == NULL)
 			{
 				root = z->right;
 				root->parent = NULL;
 			}
 			// If z is its parent's left child, replace that child with z's only child (right here).
-			else if (p->left == z)
+			else if (zParent->left == z)
 			{
-				z->right->parent = p;
-				p->left = z->right;
+				z->right->parent = zParent;
+				zParent->left = z->right;
 			}
 			// Otherwise z must be the right child of its parent, replace that child with z's only child (right here).
 			else 
 			{
-				z->right->parent = p;
-				p->right = z->right;
+				z->right->parent = zParent;
+				zParent->right = z->right;
 			}
 			
 			delete z;

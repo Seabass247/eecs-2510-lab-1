@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// A helper function that converts every character in a string to their respective lowercase values,
+// and therefore outputs the entire string in lowercase.
 string stringToLower(const string s) {
 	string tmp = s;
 	for (int i = 0; i < s.length(); i++)
@@ -10,17 +12,24 @@ string stringToLower(const string s) {
 	return tmp;
 }
 
+// The entry point into this program.
 int main()
 {
+	// An empty string to be used for consuming the program's input for commands.
 	string cmd;
 
+	// Create a new, empty binary search tree.
 	BST* bst = new BST();
 
 	// Loop forever.  The loop's boolean expression must always be true to indefinitely loop.
 	while (true) 
 	{
+		// cmd contains the raw command string (first word only)
 		cin >> cmd;
 
+		// String command is the formatted lowercase version of the raw command string from cmd.
+		// command is necessary to make case-insensitive comparisons, because command is guaranteed
+		// lowercase and likewise the hardcoded strings it's being compared to are also lowercase.
 		string command = stringToLower(cmd);
 
 		if (command == "insert") 
