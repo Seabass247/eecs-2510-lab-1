@@ -21,10 +21,14 @@ int main()
 	// Create a new, empty binary search tree.
 	BST* bst = new BST();
 
-	// Loop forever.  The loop's boolean expression must always be true to indefinitely loop.
+	// The command handling logic will loop forever (the control expression is always true).
+	// Gets a single word (command string) from the console.  Comparing the command string,
+	// for commands with a parameter, get an additional string for the parameter, and pass
+	// the parameter string in the BST's method call.
 	while (true) 
 	{
-		// cmd contains the raw command string (first word only)
+		// Get a command string from the console.
+		// cmd contains the raw command string (first word only).
 		cin >> cmd;
 
 		// String command is the formatted lowercase version of the raw command string from cmd.
@@ -32,6 +36,8 @@ int main()
 		// lowercase and likewise the hardcoded strings it's being compared to are also lowercase.
 		string command = stringToLower(cmd);
 
+		// If the command string is one of the several implemented commands, consume command
+		// parameter string if necessary, and perform appropriate operation on the BST.
 		if (command == "insert") 
 		{
 			string param;
@@ -95,6 +101,8 @@ int main()
 		}
 		else if (command == "help")
 		{
+			// Output a list of all the available commands and what format each command should be in.
+			// Each 'command <param>' pair is printed on its own new line.
 			string help = "insert <string>\ndelete <string>\nsearch <string>\n";
 			help += "min\nmax\nprev <string>\nnext <string>\nlist\nparent <string>\n";
 			help += "child <string>\nhelp\nquit\n";
@@ -102,14 +110,15 @@ int main()
 		}
 		else if (command == "quit")
 		{
+			// Call the BST's destructor, which in turn deletes all of the nodes in the BST, and then
+			// exit the program by returning 0 (assume everything went ok, thus code 0) in main.
 			delete bst;
 			return 0;
 		}
 		else
 		{
-			cout << "\n";
+			// If we got here, the user must have entered an invalid command. Do nothing.
 		}
-
 	}
 }
 
