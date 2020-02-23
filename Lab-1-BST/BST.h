@@ -20,7 +20,6 @@ public:
 	void max();
 	void list();
 
-
 private:
 	struct node
 	{

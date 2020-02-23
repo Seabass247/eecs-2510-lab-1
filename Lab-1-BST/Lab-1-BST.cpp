@@ -25,7 +25,7 @@ int main()
 	// Gets a single word (command string) from the console.  Comparing the command string,
 	// for commands with a parameter, get an additional string for the parameter, and pass
 	// the parameter string in the BST's method call.
-	while (true) 
+	while (true)
 	{
 		// Get a command string from the console.
 		// cmd contains the raw command string (first word only).
@@ -38,7 +38,7 @@ int main()
 
 		// If the command string is one of the several implemented commands, consume command
 		// parameter string if necessary, and perform appropriate operation on the BST.
-		if (command == "insert") 
+		if (command == "insert")
 		{
 			string param;
 			cin >> param;
@@ -56,7 +56,7 @@ int main()
 		{
 			bst->list();
 		}
-		else if (command == "search") 
+		else if (command == "search")
 		{
 			string param;
 			cin >> param;
@@ -91,7 +91,7 @@ int main()
 
 			bst->prev(param);
 		}
-		else if  (command == "min")
+		else if (command == "min")
 		{
 			bst->min();
 		}

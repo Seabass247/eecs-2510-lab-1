@@ -16,7 +16,7 @@ BST::~BST()
 {
 	// If the tree has a root node (it is not empty), delete the root and every
 	// child and descendent of the root.  Otherwise, the root is empty, so do nothing.
-	if (root != NULL) 
+	if (root != NULL)
 	{
 		traverseDelete(root);
 	}
@@ -41,7 +41,7 @@ void BST::traverseDelete(node* p)
 // or (3) z has two children.  If z has no children, its a leaf, so just insert NULL in the child that was in its
 // parent.  If z has one child, left or right, z's parent will now refer to z's only child instead, and z will
 // be spliced out.  If z has two children, then we will replace z with its successor y.
-void BST::remove(string word) 
+void BST::remove(string word)
 {
 	// z is the node which is to be deleted from the tree.
 	node* z;
@@ -63,12 +63,12 @@ void BST::remove(string word)
 		// zParent (z's parent) is null if z is the root, otherwise it's used
 		// decide whether z is a left child or right child
 		node* zParent = z->parent;
-	
+
 		// z is a leaf (has no left nor right child (NO children))
 		if (z->left == NULL && z->right == NULL)
 		{
 			// If z has no parent (it's the root), so make the root null
-			if (zParent == NULL) 
+			if (zParent == NULL)
 			{
 				root = NULL;
 			}
@@ -83,7 +83,7 @@ void BST::remove(string word)
 			}
 
 			delete z;
-		} 
+		}
 		// z has a left child only
 		else if (z->left != NULL && z->right == NULL)
 		{
@@ -92,7 +92,7 @@ void BST::remove(string word)
 			{
 				root = z->left;
 				root->parent = NULL;
-			} 
+			}
 			// If z is its parent's left child, replace that child with z's only child (left here).
 			else if (zParent->left == z)
 			{
@@ -101,7 +101,7 @@ void BST::remove(string word)
 			}
 			// Otherwise z must be the right child of its parent,
 			// replace that child with z's only child (left here).
-			else 
+			else
 			{
 				z->left->parent = zParent;
 				zParent->right = z->left;
@@ -125,12 +125,12 @@ void BST::remove(string word)
 				zParent->left = z->right;
 			}
 			// Otherwise z must be the right child of its parent, replace that child with z's only child (right here).
-			else 
+			else
 			{
 				z->right->parent = zParent;
 				zParent->right = z->right;
 			}
-			
+
 			delete z;
 		}
 		// z has two children, find its successor y, and replace z's data with y's data
@@ -416,7 +416,7 @@ void BST::list()
 		// Populate the list string with a list of comma-separated values of items and their
 		// respective counts.
 		traverse(root, list);
-	
+
 		// Parse the comma-separated string list of values into a readable print format,
 		// where each item and its count are numbered from 0 to n items in the tree.
 		for (int i = 0; i < list.length(); i++)
@@ -479,7 +479,7 @@ void BST::search(string word)
 {
 	node* p;
 	// If there exists a node with the key equal to string word.
-	if ((p = find(word)) != NULL) 
+	if ((p = find(word)) != NULL)
 	{
 		// Output the word and count.
 		cout << word << " " << p->count << "\n";
@@ -547,7 +547,7 @@ void BST::child(string word)
 			leftWord = left->word;
 		}
 		// If there is a right child, override "NULL" to its key.
-		if (right != NULL) 
+		if (right != NULL)
 		{
 			rightWord = right->word;
 		}
