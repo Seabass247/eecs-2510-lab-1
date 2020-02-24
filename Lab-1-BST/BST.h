@@ -1,3 +1,7 @@
+// Sebastian Hamel
+// EECS 2510 Non-Linear Data Structures
+// 02/23/2020
+
 #pragma once
 #include <string>
 

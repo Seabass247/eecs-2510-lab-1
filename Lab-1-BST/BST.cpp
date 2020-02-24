@@ -1,4 +1,8 @@
-﻿#include <iostream>
+﻿// Sebastian Hamel
+// EECS 2510 Non-Linear Data Structures
+// 02/23/2020
+
+#include <iostream>
 #include "BST.h"
 
 using namespace std;
